@@ -102,12 +102,12 @@ DATABASES = {
 	#}
 
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-      'PASSWORD': '',
-        'HOST': '',
-       'PORT': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'defaultdb',
+        'USER': 'avnadmin',
+      'PASSWORD': 'AVNS_QPv5J8wJsovwZQvKM3y',
+        'HOST': 'mysql-2b980cee-jonahmungainyokabi-5b3f.h.aivencloud.com',
+       'PORT': '28050',
     }
 }
 AUTH_USER_MODEL = 'Users.Users' #users module
