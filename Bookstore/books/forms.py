@@ -14,7 +14,7 @@ class BookForm(forms.Form):
     price=forms.DecimalField(max_digits=10,decimal_places=2)
 
     publication_date=forms.DateField()
-    cover_image=forms.ImageField(null=True,blank=True,upload_to="cover images/")#
+    cover_image=forms.ImageField()#
 
 
 
@@ -24,5 +24,7 @@ class BookReviewForm(forms.ModelForm):
 
     class Meta:
         model=BookReview
-        fields="__all__"
+        #fields="__all__"
+
+        fields=['book','rating','review_text']
 

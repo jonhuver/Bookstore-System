@@ -5,14 +5,19 @@ name = "pypi"
 
 [packages]
 django = "*"
+jinja2 = "*"
 mysqlclient = "*"
 djangorestframework = "*"
-djangorestframework-simplejwt = "*"
-jinja2 = "*"
 requests = "*"
-htmx = "*"
 pillow = "*"
-django-widget-tweaks = "*"
+htmx = "*"
+djangorestframework-simplejwt = "*"
+django-private-chat2 = "*"
+datetimerange = "*"
+django-adminlte3 = "*"
+django-slick-reporting = "*"
+django-crispy-forms = "*"
+crispy-bootstrap4 = "*"
 
 [dev-packages]
 

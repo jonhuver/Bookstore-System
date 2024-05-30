@@ -1,0 +1,176 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Make the body a flex container */
+        }
+
+        .content {
+            flex: 1; /* Content takes up remaining space */
+            padding: 20px; /* Padding for content area */
+            /* Add left margin equal to the width of the sidebar */
+        }
+
+        .content-wrapper {
+            margin-left: 240px; /* Adjust to match sidebar width */
+            padding: 20px; /* Adjust padding if needed */
+        }
+
+        .guest-house-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .guest-house-image {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .guest-house-name {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .guest-house-features {
+            color: #888;
+        }
+
+        .review-container {
+            display: flex; /* Allow reviews to stack vertically */
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .reviews {
+            list-style: none; /* Remove default list style */
+            padding: 0;
+            margin: 0;
+        }
+
+        .review {
+            display: flex;
+            justify-content: space-between; /* Align items horizontally */
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .review-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .timestamp {
+            color: #888;
+            margin-left: 10px;
+        }
+
+        .rating {
+            margin-left: auto;
+            font-weight: bold;
+        }
+
+        .review-text {
+            margin-top: 10px;
+        }
+    </style>
+
+
+</head>
+<script>
+document.getElementById('qr-button').addEventListener('click', function() {
+    var qrCode = document.getElementById('qr-code');
+    if (qrCode.style.display === 'none') {
+        qrCode.style.display = 'block';
+    } else {
+        qrCode.style.display = 'none';
+    }
+});
+</script>
+
+<body>
+    <div class="content-wrapper">
+        <form action="http://127.0.0.1:8000/books/download/" method="post">
+            {% csrf_token %}
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% for book in books %}
+            <div class="guest-house-card">
+                {% if book.cover_image %}
+                <img src="{{ book.cover_image.url }}" alt="Book Image" class="guest-house-image">
+                {% else %}
+                <p>No image available</p>
+                {% endif %}
+
+                <div class="candidate-info">
+                    <h2 class="guest-house-name">Book Name: {{ book.name }}</h2>
+                    <p class="city-name">Description {{ book.description }}</p>
+                    <p class="city-name">Author {{ book.author }}</p>
+                    <p class="city-name">Date published {{ book.publication_date }}</p>
+
+                    <p class="city-name">Available Format{{ book.format }}</p>
+
+                    <p class="city-name" style="color: cornflowerblue;">Rating {{ book.average_rating }}</p>
+
+                    
+                    <div class="review-container">
+                        {% for review in book.reviews.all %}
+                        <div class="review">
+                            <div class="review-info">
+                                <span class="username">{{ review.user.username }}</span>
+                                <span class="timestamp">{{ review.timestamp }}</span>
+                            </div>
+                            <span class="rating">Rating: {{ review.rating }}</span>
+                        </div>
+                        <div class="review-text">
+                            <p>{{ review.review_text }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" name="file_id" value="{{ book.id }}"><b>Download Book</b></button>
+                </div>
+            </div>
+             
+            {% endfor %}
+        </form>
+    </div>
+</body>
+
+</html>
+{% endblock %}
+
+
+
+
+
+
+

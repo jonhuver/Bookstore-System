@@ -1,0 +1,14 @@
+
+<form id="reviewForm" action="http://127.0.0.1:8000/books/reviews/book/review/" method="post" >
+	{% csrf_token %}
+	<input id="bookIdInput" type="hidden" name="books_id" value="{{ books_id }}">  <label for="rating">Rating:</label><br>
+	<input type="number" id="rating" name="rating" min="1" max="5"><br>
+	<label for="review_text">Review:</label><br>
+	<textarea id="review_text" name="review_text"></textarea><br>
+    <label>{{book.id}}</label>
+    <label>Books id {{books_id}}</label>
+	<input type="submit" value="Submit Review">
+  </form>
+</body>
+
+</html>

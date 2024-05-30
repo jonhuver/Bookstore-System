@@ -1,0 +1,201 @@
+
+
+password reset django 
+
+https://www.pythontutorial.net/django-tutorial/django-password-reset/
+
+
+
+
+
+
+
+
+
+
+
+
+
+from django.core.files.storage import FileSystemStorage
+from .models import Book
+
+def upload_book_cover(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            book = form.save(commit=False)
+            uploaded_image = request.FILES['cover_image']
+            unique_filename = generate_unique_filename(book.title, uploaded_image.name)
+
+            # Save the image to a new location (e.g., 'media/book_covers/')
+            fs = FileSystemStorage()
+            saved_path = fs.save(unique_filename, uploaded_image)
+
+            # Save the filename in the database
+            book.cover_image = saved_path
+            book.save()
+
+            # Redirect to a success page or render a template
+            return redirect('book_detail', pk=book.pk)
+    else:
+        form = BookForm()
+    return render(request, 'book_form.html', {'form': form})
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: green;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar select {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar select:hover {
+  color: red;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: red;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+</style>
+</head>
+<body>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <select>
+    <option value="about">About</option>
+    <option value="services">Services</option>
+    <option value="clients">Clients</option>
+    <option value="contact">Contact</option>
+  </select>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>  
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+</body>
+</html> 
+
+
+
+
+class SumValueComputationField(ComputationField):
+    calculation_method = Sum
+    calculation_field = "test_id"
+    verbose_name = _("Bookings")
+    name = "my_value_sum"
+
+
+class TotalBookings(ReportView):
+    
+    report_model = Book
+#sample reference sql query
+#SELECT product_id, SUM(value) FROM sales GROUP BY product_id;
+   
+    # Group by date on a monthly basis
+    time_series_pattern = "monthly"
+    time_series_columns = [
+        SumValueComputationField,
+    ]
+    
+    
+
+    group_by='test_id'
+    date_field ='booking_date' #'status'
+
+    # Calculate the count of each unique status
+    columns = [
+
+        "test_name",
+        ComputationField.create(
+            method=Sum, field="test_id", name="test_id", verbose_name="total_tests"
+        ),
+    ]
+
+
+    chart_settings = [
+        Chart(
+            _("Total Bookings  Monthly "),
+            Chart.BAR,
+            data_source=["my_value_sum"],
+            title_source=["test_name"],
+            #plot_total= True,
+        )
+    ]
+
+
+blog index.html
+
+| Categories:
+                {% for category in post.categories.all %}
+                    <a href="{% url 'blog_category' category.name %}">
+                        {{ category.name }}
+                    </a>
+    
+
+  Categories:
+        {% for category in post.categories.all %}
+            <a href="{% url 'blog_category' category.name %}">
+                {{ category.name }}
+            </a>
+        {% endfor %}

@@ -4,7 +4,7 @@ from django.http import HttpRequest,HttpResponseRedirect,HttpResponse
 from django.shortcuts import render
 from .forms import CustomUserCreationForm,RegistrationForm
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 #import pydantic
 from django.contrib.auth.views import LoginView
 
@@ -13,54 +13,7 @@ from django.views.decorators.csrf import csrf_protect,csrf_exempt
 
 from django.contrib.auth.models import User,BaseUserManager
 from django.shortcuts import redirect
-
-
-def login_user(request,user=None):
-   
-    if request.method == 'GET':
-        print("got a get request for the login page")
-        context = ''
-        return render(request, 'login.html')#, {'context': context}
-
-    elif request.method == 'POST':
-        print("got a POST request for the login page")
-        username:str = request.POST.get('name')
-        password:str = request.POST.get('password')
-
- 
- 
-        print(username,password)
-
-        user = authenticate(request, username=username, password=password)  #.strip
-        if user is not None:
-            login(request, user)
-            
-
-           
-           
-            #user=user.get_username()
-
-            logged_in_user=Users.objects.get(username=username)
-
-            #user_data=request.session
-
-            #store the dtails of looged in user in session
-
-            request.session['user'] =logged_in_user.username # request.POST
-
-            print("successfully logged in as  " ,logged_in_user.username)
-
-            success_url=reverse_lazy('book')
-            return HttpResponseRedirect(success_url)
-
-            #return HttpResponse(f"successfulyy logged in as  {logged_in_user.email}")
-        else:
-            context = {'error': 'Wrong credintials'}  # to display error?
-            print("context",context)
-            return render(request, 'login.html')#, {'context': context}
-        
-
-
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -120,3 +73,90 @@ def register_user(request):
         else:
             
             print("invalid form")   # return render(request, 'registration/login.html')#, {'context': context}
+
+
+
+
+
+
+
+
+
+def login_user(request,user=None):
+   
+    if request.method == 'GET':
+        print("got a get request for the login page")
+        context = ''
+        return render(request, 'login.html')#, {'context': context}
+
+    elif request.method == 'POST':
+        print("got a POST request for the login page")
+        username:str = request.POST.get('username')
+        password:str = request.POST.get('password')
+
+ 
+ 
+        print(f"entered username is: {username}\n and entred pass word is:{password}")
+
+        user = authenticate(request, username=username, password=password)  #.strip
+        if user is not None:
+            login(request, user)
+            
+
+           
+           
+            #user=user.get_username()
+
+            logged_in_user=Users.objects.get(username=username)
+
+            #user_data=request.session
+
+            #store the dtails of looged in user in session
+
+            request.session['user'] =logged_in_user.username # request.POST
+
+            print("successfully logged in as  " ,logged_in_user.username)
+
+            success_url=reverse_lazy('dashboard')
+            return HttpResponseRedirect(success_url)
+
+            #return HttpResponse(f"successfulyy logged in as  {logged_in_user.email}")
+        else:
+            context = {'error': 'Wrong credintials'}  # to display error?
+            print("context",context)
+            return render(request, 'login.html')#, {'context': context}
+        
+def logout_user(request):
+    # Logout user and redirect to home page
+    logout(request)
+    print("successfully logged out")
+    return HttpResponse('successfully logged out')
+   # return redirect("/")
+   
+
+ 
+    #return redirect("")
+
+
+
+
+
+@login_required
+def users_dashboard(request):
+     
+     
+
+     if request.method == 'GET':
+        print(f"accessing dashboard for logged in user {request.session['user']}")
+     
+        print("got a get request for the users dashboard page")
+        context = ''
+        return render(request, 'dashboard.html')#, {'context': co
+     
+
+     if request.method == 'POST':
+        #print(f"accessing dashboard for logged in user {request.session['user']}")
+     
+       
+        context = ''
+        return render(request, 'dashboard.html')#, {'context': co

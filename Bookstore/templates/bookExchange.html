@@ -1,0 +1,139 @@
+<html>
+
+
+<head>
+
+   {% extends 'dashboard.html'%}
+
+    {% block content %}  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books Page</title>
+  
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .city-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 10px;
+    
+       display: inline-block; 
+       display: block;
+    }
+    .city-image {
+        width: 100%;
+        border-radius: 10px;
+    }
+    .city-name {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .city-country {
+        color: #888;
+    
+    }
+
+    .guest-house-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 8px;
+  display: inline-block;
+  margin-top: 50px;
+}
+
+.guest-house-card:first-of-type {
+  margin-left: 240px; /* adjust this to the actual width of your sidebar */
+}
+
+
+.guest-house-card:nth-child(4n+2) { /* adjust '4n+1' according to the number of images per row */
+ margin-left: 240px; /* adjust this to the actual width of your sidebar */
+} 
+
+
+
+    .guest-house-image {
+        margin-top: 50px;
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+      /*  display:flex;
+        flex-wrap:flex;  */
+    }
+    .guest-house-name {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .guest-house-features {
+        color: #888;
+    }
+</style>
+  
+
+</head>
+
+
+<body>   
+
+<!--  <input type="hidden" name="candidate_username" value="{{ candidate.id }}">-->
+
+
+   <div>
+
+    <form action="http://127.0.0.1:8000/books/borrow/" method="POST">
+        {% csrf_token %}
+    
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    
+        {% for book in books %}
+            <div class="guest-house-card">
+                {% if book.cover_image %}
+                    <img src="{{ book.cover_image.url }}" alt="Book Image" class="guest-house-image">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+    
+                <div class="candidate-info">
+                    <h2 class="guest-house-name">Book Name: {{ book.name }}</h2>
+                    <p class="city-name">Description {{ book.description }}</p>
+                    <p class="city-name">Author{{ book.author }}</p>
+                    <p class="city-name">Date published {{ book.publication_date }}</p>
+                    
+                    <p class="city-name">Format {{ book.format }}</p>
+    
+                    <button type="submit" name="books_id" value="{{ book.id }}"><b>Borrow Book</b></button>
+                </div>
+            </div>
+        {% endfor %}
+    </form>
+    
+
+
+    <!--<div class="city-card">--> 
+
+      
+
+    
+
+    </div>
+</body>
+
+
+    {% endblock %} 
+
+</html>

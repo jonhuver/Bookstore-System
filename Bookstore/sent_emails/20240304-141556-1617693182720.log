@@ -1,0 +1,48 @@
+Content-Type: multipart/alternative;
+ boundary="===============7190454350927583873=="
+MIME-Version: 1.0
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: jonahmungainyokabi@gmail.com
+Date: Mon, 04 Mar 2024 11:15:56 -0000
+Message-ID: <170955095684.13704.13419856550653172898@DESKTOP-L281GT9>
+
+--===============7190454350927583873==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/users/reset/Ng/c3dbmk-d1400812e2bcbf59204b4113acd24038/
+
+Your username, in case you’ve forgotten: jonah
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+--===============7190454350927583873==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<p>Hello</p>
+
+<p>You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000/</p>
+
+<p>Please click the following link to reset your password:</p>
+
+http://127.0.0.1:8000/users/reset/Ng/c3dbmk-d1400812e2bcbf59204b4113acd24038/
+
+<p>Thanks</p>
+<p>ALEX the ADMIN</p>
+
+--===============7190454350927583873==--
+
+-------------------------------------------------------------------------------

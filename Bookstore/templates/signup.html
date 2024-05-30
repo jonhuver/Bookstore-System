@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +12,7 @@
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
+            background-image: url("{%static 'image2.jpeg' %}");
             display: flex;
             justify-content: center;
             align-items: center;

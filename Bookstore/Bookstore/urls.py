@@ -15,8 +15,37 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from django.views.generic.base import TemplateView
+
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+from .views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('qr_code/', include('qr_code.urls', namespace="qr_code")),
+
+
+
+  
+
+   
+
+    path("users/", include("Users.urls")),
+    path("users/", include("django.contrib.auth.urls")),
+
+
+    path("books/",include('books.urls')),
+
+    path("",index ,name='home')
+
+      #path("lab/", include("lab.urls")),
+    
+
 ]
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

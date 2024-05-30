@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: "Lato", sans-serif;
+
+
+}
+
+
+.headings {
+  height: 30px;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: green;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+
+
+
+
+.sidebar {
+  height: 100%;
+  width: 240px;
+
+  margin-right: 20;
+  
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: green;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+
+
+.sidebar select {
+  margin-right:5px;
+  margin-left:5px;
+  margin-top: 30px;
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  width: 200px;
+}
+
+.sidebar select:hover {
+  color: red;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: red;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+</style>
+</head>
+<body>
+
+    <div class="headings">Welcome
+    <p class="headings">Welcome kamau</p>
+
+
+  </div>
+
+
+   
+
+
+
+
+<div id="mySidebar" class="sidebar">
+
+  <h1>WELCOME BACK </h1>
+    
+  
+  <h1>{{user}}</h1>
+    
+
+        <select onChange="window.location.href=this.value">
+          <option value="">--Borrowed Books History--</option>
+            <option value="http://127.0.0.1:8000/books/summary/">Borrowed Books History</option>
+
+        </select>
+
+       
+    
+
+    
+        <select onChange="window.location.href=this.value" name="Books">
+          <option value="">--Books Section--</option>
+         <option value="http://127.0.0.1:8000/books/edit/">My Books</option>
+         <option value="http://127.0.0.1:8000/books/add/" >Add Book</option>
+         <option value="http://127.0.0.1:8000/books/view/">View Available books</option>
+         <option value="http://127.0.0.1:8000/books/borrow/">Borrow Books</option>
+         
+       </select>
+      
+
+     <select onChange="window.location.href=this.value" name="Reviews">
+      <option value="">--Reviews Section--</option>
+        <option value="http://127.0.0.1:8000/books/reviews/">Review  Book</option>
+        
+     </select>
+
+
+        <select onChange="window.location.href=this.value" name="clubs">
+          <option value="">--Clubs Section--</option>
+          <option value="http://127.0.0.1:8000/books/clubs/">Available clubs</option>
+        </select>
+       
+
+
+  
+</div>
+
+
+{%  block content %}
+
+
+{%  endblock %}
+
+
+
+
+</body>
+</html> 

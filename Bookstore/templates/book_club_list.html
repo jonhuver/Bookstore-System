@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+<head>
+    <title>Book Clubs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        h1, h2 {
+            color: #444;
+        }
+        .book-club {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #008CBA;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #007B9A;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Clubs</h1>
+
+    <h2>Create a new book club:</h2>
+    <form method="post" action="{% url 'create_book_club' %}">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea><br>
+        <input type="submit" value="Create">
+    </form>
+
+
+
+    {% for book_club in book_clubs %}
+    <div class="book-club">
+        <h2>{{ book_club.name }}</h2>
+        <p>{{ book_club.description }}</p>
+        <form method="post" action="{% url 'blog_detail' book_club.id %}">
+            {% csrf_token %}
+            {% if user in book_club.members.all %}
+                <button type='submit' name='book_club_id' value="{{book_club.id}}">Login to Group</button>
+            {% else %}
+                <button type='submit' name='book_club_id' value="{{book_club.id}}">Join</button>
+            {% endif %}
+        </form>
+    </div>
+    {% empty %}
+    <p>No book clubs available.</p>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,156 @@
+
+{% extends 'dashboard.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Make the body a flex container */
+        }
+
+        .content {
+            flex: 1; /* Content takes up remaining space */
+            padding: 20px; /* Padding for content area */
+            /* Add left margin equal to the width of the sidebar */
+        }
+
+        .content-wrapper {
+            margin-left: 240px; /* Adjust to match sidebar width */
+            padding: 20px; /* Adjust padding if needed */
+        }
+
+        .guest-house-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .guest-house-image {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .guest-house-name {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .guest-house-features {
+            color: #888;
+        }
+
+        .review-container {
+            display: flex; /* Allow reviews to stack vertically */
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .reviews {
+            list-style: none; /* Remove default list style */
+            padding: 0;
+            margin: 0;
+        }
+
+        .review {
+            display: flex;
+            justify-content: space-between; /* Align items horizontally */
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .review-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .timestamp {
+            color: #888;
+            margin-left: 10px;
+        }
+
+        .rating {
+            margin-left: auto;
+            font-weight: bold;
+        }
+
+        .review-text {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-wrapper">
+        <form action="http://127.0.0.1:8000/books/borrowed/return/" method="post">
+            {% csrf_token %}
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% for book in books %}
+            <div class="guest-house-card">
+                {% if book.book.cover_image %}
+                <img src="{{ book.book.cover_image.url }}" alt="Book Image" class="guest-house-image">
+                {% else %}
+                <p>No image available</p>
+                {% endif %}
+
+                <div class="candidate-info">
+                    <h2 class="guest-house-name">Book Name: {{ book.book.name }}</h2>
+                    <p class="city-name">Description {{ book.book.description }}</p>
+                    <p class="city-name">Author {{ book.book.author }}</p>
+                    <p class="city-name">Date published {{ book.book.publication_date }}</p>
+
+                    <p class="city-name">Available Format{{ book.book.format }}</p>
+
+                    <p class="city-name" style="color: aquamarine;">Borrowed on: {{ book.date_borrowed }} </p>
+
+                   
+
+                    <div class="review-container">
+                        
+                    </div>
+                    {% if not book.is_returned %}
+                    <p class="city-name" style="color: darkred;">To be Returned By: {{ book.return_due_date }}</p>
+                    <button type="submit" name="books_id" value="{{ book.id }}"><b>Return Book</b></button>
+
+                     {% else %}
+                     <p class="city-name" style="color: greenyellow;">Returned on : {{ book.date_returned }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+</body>
+
+
+
+
+</html>
+{% endblock %}

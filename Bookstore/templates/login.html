@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            background-image: url("{%static 'image2.jpeg' %}");
         }
 
         .login-form {
@@ -21,6 +23,7 @@
             padding: 30px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -89,11 +92,11 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <div class="forgot-password">
-                <a href="#">Forgot Password?</a>
+                <a href="http://127.0.0.1:8000/users/password/reset/">Forgot Password?</a>
             </div>
             <input type="submit" value="Login">
         </form>
-        <span class="sign-up">Don't have an account? <a href="http://127.0.0.1:8000/users/signup/">Sign Up</a></span>
+        <span class="sign-up">Don't have an account? <a class="forgot-password" href="http://127.0.0.1:8000/users/signup/">Sign Up</a></span>
     </div>
 </body>
 </html>

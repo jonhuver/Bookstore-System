@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book_club.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #444;
+        }
+        .post {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .comment-form, .post-form {
+            display: none;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #008CBA;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #007B9A;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".show-comment-form").click(function(){
+                $(this).next(".comment-form").slideToggle();
+            });
+            $("#show-post-form").click(function(){
+                $("#post-form").slideToggle();
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Welcome to the {{ book_club.name }} Book Club!</h1>
+    <p>Description: {{ book_club.description }}</p>
+    <p>Members: {{ book_club.members.count }}</p>
+    <p>Here are the posts for this club:</p>
+    {% for post in posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            <p>Posted By: {{ post.author }} at {{ post.created_at.date }}</p>
+            <p>{{ post.content }}</p>
+            
+            <p>Comments:</p>
+            {% for comment in post.comments.all %}
+                <div>
+                    <p>{{ comment.author.username }}: {{ comment.content }}</p>
+                </div>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
+            <button class="show-comment-form">Add a comment</button>
+            <form class="comment-form" method="post" action="{% url 'create_comment' post.id %}">
+                {% csrf_token %}
+                <label for="content">Content:</label><br>
+                <textarea id="content" name="content"></textarea><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    {% endfor %}
+    <button id="show-post-form">Create a new post</button>
+    <form id="post-form" method="post" action="{% url 'create_post' book_club.id %}">
+        {% csrf_token %}
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

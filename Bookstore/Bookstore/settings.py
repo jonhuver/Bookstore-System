@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$t&1o$74x&=8e1cv($!_mzq=391-+gscveo41zgajy_rl3vfkv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =False #True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
+
 
 
 # Application definition
@@ -37,6 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'qr_code',
+    'qrcode',
+    'slick_reporting',
+    'crispy_forms',
+    'crispy_bootstrap4' ,
+    
+
+    'Users',#1
+    'books',
+    
+    'rest_framework',   # for json web tokens
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -51,10 +65,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Bookstore.urls'
 
+#templates_directory="C:/projects/pythonprojects/Bookstore System/Bookstore/"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS':['templates','static'] ,#[(templates_directory + 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,18 +83,38 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Bookstore.wsgi.application'
+WSGI_APPLICATION = 'Bookstore.wsgi.app'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
+
 DATABASES = {
+    #'default': {
+		#'ENGINE': 'django.db.backends.mysql',
+		#'NAME': 'bokstore',
+		#'USER': 'root',
+		#'PASSWORD': 'J.m@20221578',
+		#'HOST':'localhost',
+		#'PORT':'3306',
+	#}
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+      'PASSWORD': '',
+        'HOST': '',
+       'PORT': '',
     }
 }
+AUTH_USER_MODEL = 'Users.Users' #users module
+
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
 
 # Password validation
@@ -99,6 +135,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+       
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        
+    ),
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -109,15 +154,37 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ =False #True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+
+
+
 STATIC_URL = 'static/'
+
+
+
+MEDIA_ROOT="/media/"  #path for media files
+MEDIA_URL = '/media/' 
+
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+
+STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),
+
+                  
+                  )
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR,  'static_media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SERVE_QR_CODE_IMAGE_PATH = 'qr-code-image/'
+SERVE_QR_CODE_IMAGE_PATH = 'qr-code-image/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,0 +1,12 @@
+<!--  blog/templates/blog/detail.html -->
+
+{% block page_title %}
+    <h2>{{ post.title }}</h2>
+{% endblock page_title %}
+
+{% block page_content %}
+    <small>
+        {{ post.created_on.date }} | 
+    </small>
+    <p>{{ post.body | linebreaks }}</p>
+{% endblock page_content %}

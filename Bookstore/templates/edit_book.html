@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'dashboard.html'%}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-form {
+            width: 350px;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .forgot-password a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .sign-up {
+            text-align: center;
+        }
+
+        .sign-up a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    
+
+    <div class="login-form">
+        <h2>update BOOK</h2>
+        <form action="http://127.0.0.1:8000/books/update/book/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label for="name">Book Name</label>
+            <input type="text" id="name" name="name"  value="{{book.name}} "    required>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author"  value="{{book.author}} "   required>
+
+            <select name="category" id="category">
+                <option value="">--Please choose an Category--</option>
+                {% for category in categories %}
+                <option  value="{{category}}">{{category}}</option>
+                
+    
+                {% endfor %}
+           </select>
+    
+    
+           <br>
+    
+    
+    
+           <select name="age" id="age">
+            <option value="">--Please choose an option--</option>
+            {% for age in ages %}
+            <option  value="{{age}}">{{age}}</option>
+            
+    
+            {% endfor %}
+       </select>
+               
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description"  value="{{book.description}} "  required>
+
+
+            <label for="format">Format:</label>
+           
+            <select name="format" id="format" required>
+                <option value="">--Please choose an option--</option>
+
+                {% if formats %}
+                {% for format in formats  %}
+                <option  value="{{format}}">{{format}}</option>
+                
+
+                {% endfor %}
+
+                {% endif %}
+           </select>
+           
+          
+            <label for="cover_image">Cover Image:</label>
+            {% if book.cover_image %}
+            <img src="{{ book.cover_image.url }}" alt="Book Image" class="guest-house-image" style="height: 50px;width: 50px;">
+                 {% else %}
+             <p>No image available</p>
+              {% endif %}
+            <input  type="file" id="cover_image" accept="image/*"     name="cover_image" >
+
+            <label for="book_file">File</label>
+            {% if book.book_file %}
+           <img src="{{ book.book_file.url }}" alt="Book Image" class="guest-house-image">
+                {% else %}
+            <p>No book file  available</p>
+             {% endif %}
+            <input type="file" id="book_file" accept=".pdf,.mp3"      name="book_file" >
+            
+            <label for="author">Date of Publication: {{book.publication_date}}</label>
+            <input type='date' id="publication_date" name="publication_date"  value="{{book.publication_date}} " >
+
+            <label for="price">Price: {{book.price}}</label>
+            <input type='number' id="price" name="price"  placeholder="enter new price "  value="{{book.price}} "  required>
+
+            <input type='hidden' id="price" name="update_id"    value="{{book.id}} "  required>
+
+            <label for="price">Pages: {{book.pages}}</label>
+            <input type='number' id="pages" name="pages"  placeholder="enter new pages "  value="{{book.pages}} "  required>
+           
+            <button type="submit"> UpdateBook</button>
+        </form>
+    
+    </div>
+</body>
+
+
+{% endblock %}
+</html>

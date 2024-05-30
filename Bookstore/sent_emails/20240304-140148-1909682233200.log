@@ -1,0 +1,48 @@
+Content-Type: multipart/alternative;
+ boundary="===============3473307437750882942=="
+MIME-Version: 1.0
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: jonahmungainyokabi@gmail.com
+Date: Mon, 04 Mar 2024 11:01:48 -0000
+Message-ID: <170955010875.15184.1349193140833519161@DESKTOP-L281GT9>
+
+--===============3473307437750882942==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/users/reset/Ng/c3daz0-e08501bf861f3cc2b511c60ac5aaa6fd/
+
+Your username, in case you’ve forgotten: jonah
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+--===============3473307437750882942==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<p>Hi</p>
+
+<p>You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000/</p>
+
+<p>Please click the following link to reset your password:</p>
+
+http://127.0.0.1:8000/users/reset/Ng/c3daz0-e08501bf861f3cc2b511c60ac5aaa6fd/
+
+<p>Thanks</p>
+<p>Todo App Team</p>
+
+--===============3473307437750882942==--
+
+-------------------------------------------------------------------------------

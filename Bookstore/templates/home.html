@@ -1,0 +1,116 @@
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>HomePage</title>
+
+
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .main-title { color: #333399; }
+        .subtitle { color: #2a2a2a; }
+        .section-title { color: #2E8B57; }
+        .text-content { color: #333333; }
+        .highlight { color: #DAA520; }
+        .community { color: #2F4F4F; }
+      </style>
+
+
+    <style>
+
+.full-page-image {
+  height: 50vw;
+  /* Changed from var(50%) to 50% */
+  /*--- background-image: url("C:/projects/pythonprojects/Labs/LabSystem/Images/lab.jpeg"); /* Replace with your image path */
+  
+  
+  height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;/* Added margin-right: 10px */
+    width: 100%;
+    margin-left: 0px;
+  
+}
+
+
+
+ul {
+  width: 100%;
+  list-style-type: none;
+  margin-left: 0px;
+  margin-right: 0px; /* Added margin-right: 10px */
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  margin-bottom: 0px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+ 
+<ul>
+    <li><a href="about/">About</a></li>
+    <li><a href="#news">Services</a></li>
+    <li><a href=" http://127.0.0.1:8000/users/signup/">Register</a></li>
+    <li><a href=" http://127.0.0.1:8000/users/login/">Login</a></li>
+    <li><a href="#contact">Contact</a></li>
+
+    
+  </ul>
+
+   <div style="height: 50vh;">
+  <img class="full-page-image" src="{%static 'img1.jpeg' %}">
+
+  </div>
+
+
+  <h1 class="main-title">Unleash Your Inner Bookworm: Dive into a World of Stories</h1>
+  <p class="text-content">Welcome to your one-stop shop for literary adventures! Whether you're a seasoned bibliophile or just starting to explore the magic of books, we have something to ignite your imagination.</p>
+
+  <h2 class="section-title">Curated Collections, Endless Possibilities:</h2>
+  <p class="text-content">Browse through our carefully chosen selections, categorized to guide you to your next great read. From heart-pounding thrillers to soul-stirring romances, captivating non-fiction to whimsical children's books, we have stories waiting to transport you.</p>
+
+  <h2 class="section-title">Dive Deeper:</h2>
+  <p class="text-content">Discover hidden gems with our personalized recommendations. Tell us your favorite authors and genres, and we'll curate a list just for you.</p>
+
+  <h2 class="section-title">More Than Just Books:</h2>
+  <p class="text-content">Enhance your reading experience with our collection of stylish bookmarks, cozy reading lights, and beautiful notebooks perfect for jotting down your thoughts and inspirations.</p>
+
+  <h2 class="section-title highlight">Join the Community:</h2>
+  <p class="community">Connect with fellow bookworms in our online forums and book clubs. Discuss your latest reads, share recommendations, and discover new favorites together.</p>
+
+  <p class="text-content">Start your journey today and let the magic of books unfold!</p>
+
+
+</body>
+
+</html>

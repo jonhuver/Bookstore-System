@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends 'dashboard.html'%}
+
+{% block content %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,10 +82,13 @@
         }
     </style>
 </head>
+
 <body>
+    
+
     <div class="login-form">
         <h2>ADD BOOK</h2>
-        <form action="http://127.0.0.1:8000/books/add/" method="post" enctype="multipart/form-data">
+        <form action="http://127.0.0.1:8000/books/add/book/" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <label for="name">Book name:</label>
@@ -92,12 +99,53 @@
             <label for="description">Description:</label>
             <input type="text" id="description" name="description" required>
 
+            <label for="pages">pages:</label>
+            <input type="number" id="pages" name="pages" required>
+
+
 
             <label for="format">Format:</label>
-            <input type="text" id="format" name="format" required>
+           
+            <select name="format" id="format">
+                <option value="">--Please choose an option--</option>
+                {% for format in formats %}
+                <option  value="{{format}}">{{format}}</option>    
+
+                {% endfor %}
+           </select>
+
+           <br>
+
+
+           <select name="category" id="category">
+            <option value="">--Please choose an Category--</option>
+            {% for category in categories %}
+            <option  value="{{category}}">{{category}}</option>
+            
+
+            {% endfor %}
+       </select>
+
+
+       <br>
+
+
+
+       <select name="age" id="age">
+        <option value="">--Please choose an option--</option>
+        {% for age in ages %}
+        <option  value="{{age}}">{{age}}</option>
+        
+
+        {% endfor %}
+   </select>
+           
 
             <label for="cover_image">Cover Image:</label>
-            <input type="file" id="cover_image" accept="image/*"    name="cover_image" required>
+            <input  type="file" id="cover_image" accept="image/*"    name="cover_image" required>
+
+            <label for="book_file">File</label>
+            <input type="file" id="book_file" accept=".pdf,.mp3"   name="book_file" required>
 
             <label for="author">Date of Publication:</label>
             <input type='date' id="publication_date" name="publication_date" required>
@@ -112,4 +160,7 @@
     
     </div>
 </body>
+
+
+{% endblock %}
 </html>

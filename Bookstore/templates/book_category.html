@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Book Category</title>
+</head>
+<body>
+    <form action="{% url 'bookcategory-new-add' %}" method="post">
+        {% csrf_token %}
+        <label for="category_name">Category Name:</label><br>
+
+        <select name="category_name" id="category_name">
+            {% for category in categories %}
+
+            <option name value="{{category}}">{{category}}</option>
+
+            {% endfor %}
+        </select><br>
+        <label for="books">Books:</label><br>
+        <select name="books_id" id="books" required >
+            <option value="">--Please Select a Book--</option>
+
+            {% for book in books %}
+            <!-- Dynamically populate this with your books -->
+            <option name value="{{book.id}}">{{book.name}}</option>
+
+            {% endfor %}
+        </select><br>
+        <label for="age">Age:</label><br>
+        <select name="age" id="age" required>
+            <option value="">--Recommended Age Category--</option>
+
+            {% for age in ages %}
+
+            <option name value="{{age}}">{{age}}</option>
+
+            {% endfor %}
+
+            
+        </select><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
