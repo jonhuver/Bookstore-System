@@ -1,13 +1,16 @@
 echo "BUILD START"
 
 # create a virtual environment named 'venv' if it doesn't already exist
-python3.12 -m venv venv
+#python3.12 -m venv venv
 
 # activate the virtual environment
-source venv/bin/activate
-
+#source venv/bin/activate
+echo "python version"
+echo python --version
 # install all deps in the venv
-pip install -r requirements.txt
+pip install pipenv
+pipenv shell
+pipenv install
 python manage.py makemigrations --noinput
 
 python manage.py migrate --noinput

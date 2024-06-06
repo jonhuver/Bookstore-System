@@ -18,7 +18,6 @@ django-adminlte3 = "*"
 django-slick-reporting = "*"
 django-crispy-forms = "*"
 crispy-bootstrap4 = "*"
-psycopg2 = "*"
 psycopg2-binary = "*"
 
 [dev-packages]
