@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-$t&1o$74x&=8e1cv($!_mzq=391-+gscveo41zgajy_rl3vfkv
 DEBUG =False #True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost',"pg-2e49feb8-jonahmungainyokabi-5b3f.f.aivencloud.com"]
 
 
 
@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'Bookstore.wsgi.app'
 
 
 
-DATABASES = {
+#DATABASES = {
     #'default': {
 		#'ENGINE': 'django.db.backends.mysql',
 		#'NAME': 'bokstore',
@@ -101,16 +101,18 @@ DATABASES = {
 		#'PORT':'3306',
 	#}
 
+   
+#}
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'defaultdb',
         'USER': 'avnadmin',
-      'PASSWORD': 'AVNS_QPv5J8wJsovwZQvKM3y',
-        'HOST': 'mysql-2b980cee-jonahmungainyokabi-5b3f.h.aivencloud.com',
-       'PORT': '28050',
+        'PASSWORD': 'AVNS_xV-VY5ezbRMloLPm49K',
+        'HOST': 'pg-2e49feb8-jonahmungainyokabi-5b3f.f.aivencloud.com',
+        'PORT': '28050',
     }
 }
-AUTH_USER_MODEL = 'Users.Users' #users module
 
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
