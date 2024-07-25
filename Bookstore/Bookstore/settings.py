@@ -105,11 +105,11 @@ WSGI_APPLICATION = 'Bookstore.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'defaultdb',
-        'USER': 'avnadmin',
-        'PASSWORD': 'AVNS_xV-VY5ezbRMloLPm49K',
-        'HOST': 'pg-2e49feb8-jonahmungainyokabi-5b3f.f.aivencloud.com',
-        'PORT': '28050',
+        'NAME': 'db_9362e2dd_1714_4a50_8de9_a3268570815b',
+        'USER': 'u_9362e2dd_1714_4a50_8de9_a3268570815b',
+        'PASSWORD': 'N09LF1fd43aXhsLuL0U48Mu11wx5WOw8LA2Mb6N4f7u2r94atcb2',
+        'HOST': 'pg.rapidapp.io',
+        'PORT': '5433',
     }
 }
 
