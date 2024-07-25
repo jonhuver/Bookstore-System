@@ -11,8 +11,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 from datetime import timedelta
 
-from qr_code.qrcode.utils import QRCodeOptions
-import qr_code,qrcode
+
 
 class FormatChoices(models.TextChoices):
     #hardcover='Hardcover'
