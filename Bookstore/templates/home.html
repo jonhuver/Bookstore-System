@@ -46,7 +46,26 @@
         li a:hover {
             background-color: #111;
         }
-    </style>
+
+
+
+
+        li button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        li button:hover {
+            background-color: #111;
+        }
+
+            </style>
     <script>
         function redirectToPage(event, url) {
             event.preventDefault();
@@ -56,11 +75,33 @@
 </head>
 <body>
     <ul>
-        <li><a href="about/?method=get" onclick="redirectToPage(event, 'about/?method=get')">About</a></li>
-        <li><a href="#news?method=get" onclick="redirectToPage(event, '#news?method=get')">Services</a></li>
-        <li><a href="http://127.0.0.1:8000/users/signup/?method=get" onclick="redirectToPage(event, 'http://127.0.0.1:8000/users/signup/?method=get')">Register</a></li>
-        <li><a href="http://127.0.0.1:8000/users/login/?method=get" onclick="redirectToPage(event, 'http://127.0.0.1:8000/users/login/?method=get')">Login</a></li>
-        <li><a href="#contact?method=get" onclick="redirectToPage(event, '#contact?method=get')">Contact</a></li>
+    <form action="#about/" method="get">
+        <li><button=>About</button></li>
+    </form>
+
+    <form method="get" action="#services">
+        <li><button>Services</button></li>
+
+    </form>
+
+    <form method="get" action="http://127.0.0.1:8000/users/signup/">
+        <li><button>Register</button></li>
+
+
+    </form>
+    
+    <form method="get" action="http://127.0.0.1:8000/users/login">
+        <li><button>Login</button></li>
+
+    </form>
+
+    <form method="get" action="#contact">
+    
+    
+        
+        <li><button>Contact</button></li>
+    
+    </form>
     </ul>
     <div style="height: 50vh;">
         <img class="full-page-image" src="{%static 'img1.jpeg' %}">
