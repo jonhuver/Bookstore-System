@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+jinja2 = "*"
+mysqlclient = "*"
+djangorestframework = "*"
+requests = "*"
+pillow = "*"
+htmx = "*"
+djangorestframework-simplejwt = "*"
+django-private-chat2 = "*"
+datetimerange = "*"
+django-adminlte3 = "*"
+django-slick-reporting = "*"
+django-crispy-forms = "*"
+crispy-bootstrap4 = "*"
+psycopg2-binary = "*"
+gunicorn = "*"
+dj-database-url = "*"
+pip = "*"
+whitenoise = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
