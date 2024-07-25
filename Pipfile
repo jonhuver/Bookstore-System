@@ -23,6 +23,7 @@ gunicorn = "*"
 dj-database-url = "*"
 pip = "*"
 whitenoise = "*"
+gavel = "*"
 
 [dev-packages]
 
