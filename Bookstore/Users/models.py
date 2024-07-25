@@ -17,9 +17,9 @@ class Users(AbstractUser):
    # objects=models.Manager()
     #custoomuser =models.Manager()
    
-
-    class Meta:
-     db_table ='users'
+#removed code below due to postgres undefined table error during migration
+   # class Meta:
+   #  db_table ='users'
 
 
         
