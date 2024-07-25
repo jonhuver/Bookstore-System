@@ -15,7 +15,7 @@ python manage.py makemigrations --noinput
 
 python manage.py migrate --noinput
 # collect static files using the Python interpreter from venv
-python manage.py collectstatic --noinput
+#python manage.py collectstatic --noinput
 
 echo "BUILD END"
 

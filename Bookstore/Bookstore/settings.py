@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-$t&1o$74x&=8e1cv($!_mzq=391-+gscveo41zgajy_rl3vfkv
 DEBUG =False #True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost',"pg-2e49feb8-jonahmungainyokabi-5b3f.f.aivencloud.com"]
+#ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost',"pg-2e49feb8-jonahmungainyokabi-5b3f.f.aivencloud.com"]
 
 
 
@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'qr_code',
-    'qrcode',
+    
     'slick_reporting',
     'crispy_forms',
     'crispy_bootstrap4' ,
@@ -187,6 +186,4 @@ STATIC_ROOT = os.path.join(BASE_DIR,  'static_media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SERVE_QR_CODE_IMAGE_PATH = 'qr-code-image/'
-SERVE_QR_CODE_IMAGE_PATH = 'qr-code-image/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

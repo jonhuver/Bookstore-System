@@ -26,7 +26,7 @@ from .views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('qr_code/', include('qr_code.urls', namespace="qr_code")),
+    
 
 
 
