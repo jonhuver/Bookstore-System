@@ -100,9 +100,9 @@ WSGI_APPLICATION = 'Bookstore.wsgi.app'
 
 
 #DATABASES = {
-    #'default': {
+   # 'default': {
 		#'ENGINE': 'django.db.backends.mysql',
-		#'NAME': 'bokstore',
+	#	'NAME': 'bookst',
 		#'USER': 'root',
 		#'PASSWORD': 'J.m@20221578',
 		#'HOST':'localhost',
@@ -111,6 +111,7 @@ WSGI_APPLICATION = 'Bookstore.wsgi.app'
 
    
 #}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

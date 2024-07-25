@@ -23,6 +23,7 @@ gunicorn = "*"
 dj-database-url = "*"
 pip = "*"
 whitenoise = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
