@@ -188,7 +188,7 @@ def add_book(request):
     else:
         redirect('login')
 
-    if request.method == 'GET' or 'get':
+    if request.method == 'get' or "GET" :
         print("got a get request add  book")
         choices=FormatChoices.choices
         age_choices=AgeChoices.choices
@@ -213,7 +213,7 @@ def add_book_post(request):
 
     else:
         redirect('login')
-    if request.method == 'POST' or 'post':
+    if request.method == 'post' or "POST":
         print("got a POST request for book page")
         try:
          username=Users.objects.get(username=user_data)
@@ -327,7 +327,7 @@ def add_book_review(request):
         print("user data",user_data)
         print("user data in request")
 
-        if request.method == 'GET':
+        if request.method == 'get' or "GET":
             print("got a get request add  book review")
 
             #form=BookReviewForm()
@@ -402,7 +402,7 @@ def viewAvailableBooks(request):
         # Get the user object using the retrieved user ID
        # user = CustomUser.objects.get(username=user_data)
 
-        if request.method == 'GET':
+        if request.method == 'get' or "GET":
           print("got request to get available books")
 
           books = Book.objects.annotate(average_rating=Avg('reviews__rating')).prefetch_related(Prefetch('reviews', queryset=BookReview.objects.order_by('-date_posted')))
@@ -424,7 +424,7 @@ def borrow_book(request):
         print("user data",user_data)
         print("user data in request")
 
-        if request.method == 'GET':
+        if request.method == 'get' or "GET":
             print("got a get request borrow  book ")
             context = ''
             books = Book.objects.all()  
@@ -432,7 +432,7 @@ def borrow_book(request):
             return render(request, 'bookExchange.html',{"books":books})
 
 
-        if request.method == 'POST':
+        if request.method == 'post' or "POST":
             print("got a post request borrow  book ")
             context = ''
             borrowed_book=request.POST.get("books_id")
@@ -465,7 +465,7 @@ def borrow_book(request):
         #return render(request, 'bookExchange.html',{"books":books})
 @login_required
 def account_summarry(request):
-    if request.method=="GET":
+    if request.method=='get' or "GET":
      user_data = request.session.get('user')
      if user_data:
         user=Users.objects.get(username=user_data)
@@ -518,7 +518,7 @@ def edit_books_post(request):
         book_owner=Users.objects.get(username=user_data)
         books=Book.objects.filter(added_by=book_owner).all()
 
-    if request.method=='POST' or 'post':
+    if request.method=='post' or "POST":
 
         if request.POST.get("delete_id"):
            books_id=request.POST.get("delete_id")
@@ -564,7 +564,7 @@ def edit_books_post(request):
 def update_book_update(request):
     user_data = request.session.get('user')
     if user_data:
-        if request.method=='POST':
+        if request.method=='post' or "POST":
             name:str = request.POST.get('name')
             author:str = request.POST.get('author')
             description:str = request.POST.get('description')
@@ -642,7 +642,7 @@ def myreviews(request):
 
         user=Users.objects.get(username=user_data)
 
-    if request.method=='get' or 'GET':
+    if request.method=='get' or "GET":
 
         print('all revs')
 
@@ -658,7 +658,7 @@ def BookCategoryCreateViewget( request):
 
     user_data = request.session.get('user')
     if user_data:
-        if request.method=='get' or 'GET':
+        if request.method=='get' or "GET":
             user=Users.objects.get(username=user_data)
 
             choices=BookCategory.category_choices
@@ -684,7 +684,7 @@ def BookCategoryCreateViewPost( request):
     user_data = request.session.get('user')
     if user_data:    
 
-        if request.method == 'POST':
+        if request.method == 'post' or "POST":
             category_name = request.POST.get('category_name')
             books = request.POST.get('books_id')  # if books is a multiselect field
             age = request.POST.get('age')
@@ -746,7 +746,7 @@ def return_book(request):
     user_data = request.session.get('user')
     if user_data:  
 
-        if request.method=='POST' or 'post':
+        if request.method=='post' or "POST":
 
 
             books_id = request.POST.get('books_id')
@@ -812,7 +812,7 @@ def create_post(request, book_club_id):
         user=Users.objects.get(username=user_data)
 
         book_club = get_object_or_404(BookClub, pk=book_club_id)
-        if request.method == 'POST':
+        if request.method =='post' or  "POST":
             content = request.POST.get('content')
             title = request.POST.get('title')
             Post.objects.create(author=user, book_club=book_club, content=content,title=title)
@@ -829,7 +829,7 @@ def create_comment(request, post_id):
 
         user=Users.objects.get(username=user_data)
         post = get_object_or_404(Post, pk=post_id)
-        if request.method == 'POST':
+        if request.method == 'post' or "POST":
             content = request.POST.get('content')
             Comment.objects.create(author=user, post=post, content=content)
             #return redirect('post_detail', post_id=post.id)
@@ -858,7 +858,7 @@ def book_club_detail(request, book_club_id):
     
 
 def book_club_list(request):
-    if request.method=='get' or 'GET':
+    if request.method=='get' or "GET":
 
         print('get method to see clubs')
 
@@ -883,7 +883,7 @@ def create_book_club(request):
         
 
             user=Users.objects.get(username=user_data)
-            if request.method == 'POST':
+            if request.method == 'post' or  "POST":
                 name = request.POST.get('name')
                 description = request.POST.get('description')
                 book_club = BookClub(name=name, description=description, owner=user)

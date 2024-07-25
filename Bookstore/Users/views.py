@@ -18,12 +18,12 @@ from django.contrib.auth.decorators import login_required
 
 
 def register_user(request):
-    if request.method == 'get' or 'GET':
+    if request.method =='get' or "GET":
         print("got a get request for the create user  page")
         context = ''
         return render(request, 'signup.html')#, {'context': context}
 
-    elif request.method == 'post' or 'POST' :
+    elif request.method == 'post' or "POST" :
         print("user request to create user")
         form = RegistrationForm(data = request.POST)
         if form.is_valid():
@@ -84,12 +84,12 @@ def register_user(request):
 
 def login_user(request,user=None):
    
-    if request.method == 'GET':
+    if request.method == 'get' or "GET":
         print("got a get request for the login page")
         context = ''
         return render(request, 'login.html')#, {'context': context}
 
-    elif request.method == 'POST':
+    elif request.method == 'post' or "POST":
         print("got a POST request for the login page")
         username:str = request.POST.get('username')
         password:str = request.POST.get('password')
@@ -146,7 +146,7 @@ def users_dashboard(request):
      
      
 
-     if request.method == 'GET':
+     if request.method == 'get' or "GET":
         print(f"accessing dashboard for logged in user {request.session['user']}")
      
         print("got a get request for the users dashboard page")
@@ -154,7 +154,7 @@ def users_dashboard(request):
         return render(request, 'dashboard.html')#, {'context': co
      
 
-     if request.method == 'POST':
+     if request.method == 'post' or "POST":
         #print(f"accessing dashboard for logged in user {request.session['user']}")
      
        
