@@ -47,14 +47,20 @@
             background-color: #111;
         }
     </style>
+    <script>
+        function redirectToPage(event, url) {
+            event.preventDefault();
+            window.location.href = url;
+        }
+    </script>
 </head>
 <body>
     <ul>
-        <li><a href="about/?method=get">About</a></li>
-        <li><a href="#news?method=get">Services</a></li>
-        <li><a href="http://127.0.0.1:8000/users/signup/?method=get">Register</a></li>
-        <li><a href="http://127.0.0.1:8000/users/login/?method=get">Login</a></li>
-        <li><a href="#contact?method=get">Contact</a></li>
+        <li><a href="about/?method=get" onclick="redirectToPage(event, 'about/?method=get')">About</a></li>
+        <li><a href="#news?method=get" onclick="redirectToPage(event, '#news?method=get')">Services</a></li>
+        <li><a href="http://127.0.0.1:8000/users/signup/?method=get" onclick="redirectToPage(event, 'http://127.0.0.1:8000/users/signup/?method=get')">Register</a></li>
+        <li><a href="http://127.0.0.1:8000/users/login/?method=get" onclick="redirectToPage(event, 'http://127.0.0.1:8000/users/login/?method=get')">Login</a></li>
+        <li><a href="#contact?method=get" onclick="redirectToPage(event, '#contact?method=get')">Contact</a></li>
     </ul>
     <div style="height: 50vh;">
         <img class="full-page-image" src="{%static 'img1.jpeg' %}">
