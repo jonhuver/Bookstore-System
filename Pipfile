@@ -21,6 +21,7 @@ crispy-bootstrap4 = "*"
 psycopg2-binary = "*"
 gunicorn = "*"
 dj-database-url = "*"
+pip = "*"
 
 [dev-packages]
 
