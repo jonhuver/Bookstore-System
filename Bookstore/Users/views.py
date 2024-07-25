@@ -18,12 +18,12 @@ from django.contrib.auth.decorators import login_required
 
 
 def register_user(request):
-    if request.method == 'GET' or 'get':
+    if request.method == 'get' or 'GET':
         print("got a get request for the create user  page")
         context = ''
         return render(request, 'signup.html')#, {'context': context}
 
-    elif request.method == 'POST' or 'post':
+    elif request.method == 'post' or 'POST' :
         print("user request to create user")
         form = RegistrationForm(data = request.POST)
         if form.is_valid():
