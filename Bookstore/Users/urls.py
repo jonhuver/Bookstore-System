@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import register_user,login_user,users_dashboard,logout_user
+from .views import register_user,login_user,users_dashboard,logout_user,register_user_post,login_user_post
 
 from django.contrib.auth.views import (
     LogoutView, 
@@ -17,7 +17,7 @@ from rest_framework_simplejwt.views import (
 )
 
 
-
+#
 
 
 urlpatterns = [
@@ -26,12 +26,17 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
   
     path("signup/", register_user, name="signup"),
+    path("signup/register/",register_user_post,name="register"),
 
 
      path("dashboard/",users_dashboard, name="dashboard"),
 
 
+     path("login/details/",login_user_post, name="login_details"),
      path("login/",login_user, name="login"),#render login view as function #function based views
+
+
+
 
      path("logout/",logout_user, name="logout"),
      #path("password/reset/",password_reset, name="resetPassword"),

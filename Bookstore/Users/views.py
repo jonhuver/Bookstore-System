@@ -23,7 +23,8 @@ def register_user(request):
         context = ''
         return render(request, 'signup.html')#, {'context': context}
 
-    elif request.method == 'post' or "POST" :
+def register_user_post(request):
+    if request.method == 'post' or "POST" :
         print("user request to create user")
         form = RegistrationForm(data = request.POST)
         if form.is_valid():
@@ -87,9 +88,11 @@ def login_user(request,user=None):
     if request.method == 'get' or "GET":
         print("got a get request for the login page")
         context = ''
+    
         return render(request, 'login.html')#, {'context': context}
-
-    elif request.method == 'post' or "POST":
+    
+def login_user_post(request):
+    if request.method == 'post' or "POST":
         print("got a POST request for the login page")
         username:str = request.POST.get('username')
         password:str = request.POST.get('password')
@@ -103,7 +106,7 @@ def login_user(request,user=None):
             login(request, user)
             
 
-           
+           #
            
             #user=user.get_username()
 
