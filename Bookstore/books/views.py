@@ -781,6 +781,13 @@ def join_book_club(request):
 
         user=Users.objects.get(username=user_data)
 
+        if user:
+            print("requestingjoining group as", user.username)
+
+        else:
+
+            return redirect('login')
+
         #request.user=
         
 
@@ -796,11 +803,17 @@ def join_book_club(request):
 
         print(' total new members',total_members_now)
 
-        redirect('blog_detail', book_club_id=book_club.id)
+       
+
+        book_club.save()
+
+        book_club.refresh_from_db()
+
+        #redirect('blog_detail', book_club_id=book_club.id)
 
 
         
-       # return HttpResponse('total members',total_members_now) #redirect('book_club_detail', book_club_id=book_club.id)
+        return HttpResponse('succesfully joined group',total_members_now) #redirect('book_club_detail', book_club_id=book_club.id)
     
 
 
@@ -847,11 +860,13 @@ def book_club_detail(request, book_club_id):
         user=Users.objects.get(username=user_data)
         book_club = get_object_or_404(BookClub, pk=book_club_id)
 
+        book_club.refresh_from_db()
+
         print('all members in this group',len(book_club.members.all()))
 
         if user not in book_club.members.all():
             print('you have not yet joined club')
-            return redirect('home')
+            return redirect('get-book-clubs')
         posts = Post.objects.filter(book_club=book_club).prefetch_related('comments')
         #comments = post.comments.all()
         return render(request, 'club_base.html', {'book_club': book_club, 'posts': posts})
@@ -889,7 +904,7 @@ def create_book_club(request):
                 book_club = BookClub(name=name, description=description, owner=user)
                 book_club.save()
                 book_club.members.add(user)
-                return redirect('home')
+                return redirect('get-book-clubs')#get-book-clubs
             #return render(request, 'create_book_club.html')
 
             return HttpResponse('succesfully created group')

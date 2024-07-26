@@ -92,15 +92,7 @@ body {
 
     <div class="headings">Welcome
     <p class="headings">Welcome kamau</p>
-
-
   </div>
-
-
-   
-
-
-
 
 <div id="mySidebar" class="sidebar">
 
@@ -109,37 +101,39 @@ body {
   
   <h1>{{user}}</h1>
     
-
+ 
         <select onChange="window.location.href=this.value">
           <option value="">--Borrowed Books History--</option>
-            <option value="http://127.0.0.1:8000/books/summary/">Borrowed Books History</option>
+            <option value="{% url 'accountSummary' %}">Borrowed Books History</option>
+
+
 
         </select>
 
-       
+      
     
-
+   
     
         <select onChange="window.location.href=this.value" name="Books">
           <option value="">--Books Section--</option>
-         <option value="http://127.0.0.1:8000/books/edit/">My Books</option>
-         <option value="http://127.0.0.1:8000/books/add/" >Add Book</option>
-         <option value="http://127.0.0.1:8000/books/view/">View Available books</option>
-         <option value="http://127.0.0.1:8000/books/borrow/">Borrow Books</option>
+         <option value="{% url 'EditBooksGet' %}">My Books</option>
+         <option value="{% url 'addbook' %}" >Add Book</option>
+         <option value="{% url 'viewBooks' %}">View Available books</option>
+         <option value="{% url 'borrowBooks' %}">Borrow Books</option>
          
        </select>
       
 
      <select onChange="window.location.href=this.value" name="Reviews">
       <option value="">--Reviews Section--</option>
-        <option value="http://127.0.0.1:8000/books/reviews/">Review  Book</option>
+        <option value="{% url 'bookReview' %}">Review  Book</option>
         
      </select>
 
 
         <select onChange="window.location.href=this.value" name="clubs">
           <option value="">--Clubs Section--</option>
-          <option value="http://127.0.0.1:8000/books/clubs/">Available clubs</option>
+          <option value="{% url 'get-book-clubs' %}">Available clubs</option>
         </select>
        
 

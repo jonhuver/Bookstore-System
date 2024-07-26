@@ -84,7 +84,7 @@
 <body>
     <div class="login-form">
         <h2>Login</h2>
-        <form action="http://127.0.0.1:8000/users/login/details/" method="POST">
+        <form action="{% url 'login_details' %}" method="POST">
             {% csrf_token %}
 
             <label for="username">Username:</label>
@@ -92,11 +92,11 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <div class="forgot-password">
-                <a href="http://127.0.0.1:8000/users/password/reset/">Forgot Password?</a>
+                <a href="{% url 'passwordReset' %}">Forgot Password?</a>
             </div>
             <input type="submit" value="Login">
         </form>
-        <span class="sign-up">Don't have an account? <a class="forgot-password" href="http://127.0.0.1:8000/users/signup/">Sign Up</a></span>
+        <span class="sign-up">Don't have an account? <a class="forgot-password" href="{% url 'signup' %}">Sign Up</a></span>
     </div>
 </body>
 </html>

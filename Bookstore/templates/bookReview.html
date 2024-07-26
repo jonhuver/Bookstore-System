@@ -82,7 +82,8 @@
 	</head>
 
     <body>
-<form   action="http://127.0.0.1:8000/books/reviews/book/" method="get">
+<form   action="{% url 'ReviewPage' %}" method="get">
+    
     {% csrf_token %}
 
 	{% for book in books %}

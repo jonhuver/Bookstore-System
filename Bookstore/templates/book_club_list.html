@@ -46,18 +46,27 @@
 
 
 
+    
     {% for book_club in book_clubs %}
     <div class="book-club">
         <h2>{{ book_club.name }}</h2>
         <p>{{ book_club.description }}</p>
-        <form method="post" action="{% url 'blog_detail' book_club.id %}">
-            {% csrf_token %}
+        
             {% if user in book_club.members.all %}
+
+                <form method="post" action="{% url 'blog_detail' book_club.id %}">
+                   {% csrf_token %}
                 <button type='submit' name='book_club_id' value="{{book_club.id}}">Login to Group</button>
+                </form>
             {% else %}
-                <button type='submit' name='book_club_id' value="{{book_club.id}}">Join</button>
+              <form method="post" action="{% url 'join_book_club'%}" >
+                 {% csrf_token %}
+
+
+                  <button type='submit' name='book_club_id' value="{{book_club.id}}">Join This Book Club</button>
+
+               </form>
             {% endif %}
-        </form>
     </div>
     {% empty %}
     <p>No book clubs available.</p>

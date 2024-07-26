@@ -16,22 +16,25 @@ urlpatterns = [
 
 
      path("add/",add_book, name="addbook"),#render login view as function #function based views
+     path("add/book/",add_book_post, name="addbookPost"),
+     path("edit/",edit_books_get, name="EditBooksGet"),
+     path("update/",edit_books_post, name="EditBooksPost"),
+
+     path("update/book/",update_book_update, name="UpdateBook") ,
      path("view/",viewAvailableBooks, name="viewBooks"),
      path("borrow/",borrow_book, name="borrowBooks"),
      path("summary/",account_summarry, name="accountSummary"),
 
 
      path("reviews/",add_book_review, name="bookReview"),
-
      path("reviews/book/",add_book_review_get_page,name='ReviewPage'),#add_book_review_review, name="bookReviewReview"),
      path("reviews/book/review/",add_book_review_review,name='ReviewPageRev'),
+     path("borrowed/return/",return_book,name='return-book'),
 
-     path("add/book/",add_book_post, name="addbookPost"),
+     
 
      path("download/",download_file, name="downloadFile"),
-     path("edit/",edit_books_get, name="EditBooksGet"),
-     path("update/",edit_books_post, name="EditBooksPost"),
-     path("update/book/",update_book_update, name="UpdateBook"),
+     
 
 
      path("category/" ,BookCategoryCreateViewget,name='bookcategory-new'),
@@ -42,8 +45,7 @@ urlpatterns = [
 
     path("categories/", TotalBooksPerCategory.as_view(), name="bookingsReportsTests"),
 
-    path("borrowed/return/",return_book,name='return-book'),
-
+    
 #path("", views.blog_index, name="blog_index"),
    # path("post/<int:pk>/", views.blog_detail, name="blog_detail"),
    # path("category/<category>/", views.blog_category, name="blog_category"),

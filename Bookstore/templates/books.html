@@ -112,7 +112,7 @@ document.getElementById('qr-button').addEventListener('click', function() {
 
 <body>
     <div class="content-wrapper">
-        <form action="http://127.0.0.1:8000/books/download/" method="post">
+        <form action="{% url 'downloadFile' %}" method="post">
             {% csrf_token %}
 
             {% if messages %}

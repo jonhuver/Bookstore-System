@@ -88,7 +88,7 @@
 
     <div class="login-form">
         <h2>update BOOK</h2>
-        <form action="http://127.0.0.1:8000/books/update/book/" method="post" enctype="multipart/form-data">
+        <form action="{% url 'UpdateBook' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <label for="name">Book Name</label>

@@ -89,7 +89,7 @@
 
    <div>
 
-    <form action="http://127.0.0.1:8000/books/borrow/" method="POST">
+    <form action="{% url 'borrowBooks' %}" method="POST">
         {% csrf_token %}
     
         {% if messages %}
