@@ -7,13 +7,17 @@ echo "BUILD START"
 #source venv/bin/activate
 echo "python version"
 echo python --version
-# install all deps in the venv
-pip install pipenv
-pipenv shell
-pipenv install
+#pip install -r requirements.txt
+
+pip install -r requirements.txt
+
 python manage.py makemigrations --noinput
 
 python manage.py migrate --noinput
+
+python3.9 manage.py collectstatic --noinput
+
+
 # collect static files using the Python interpreter from venv
 #python manage.py collectstatic --noinput
 

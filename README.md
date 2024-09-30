@@ -35,6 +35,10 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"#
 also ensure you have configured DATABASES field in settings.py connect your database
 
 
+### generate requirements from pipfile.lock
+
+pipenv requirements > requirements.txt
+
 
 
 

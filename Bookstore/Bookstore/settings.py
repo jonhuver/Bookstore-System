@@ -29,10 +29,10 @@ SECRET_KEY = 'django-insecure-$t&1o$74x&=8e1cv($!_mzq=391-+gscveo41zgajy_rl3vfkv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =False #True
 
-#ALLOWED_HOSTS = []
-#ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost',"pg-2e49feb8-jonahmungainyokabi-5b3f.f.aivencloud.com"]
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]").split(",")
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh","pg.rapidapp.io"]
+
+#ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]").split(",") # koyeb deployment
 
 # Application definition
 
