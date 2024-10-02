@@ -32,6 +32,12 @@ DEBUG =False #True
 
 ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh","pg.rapidapp.io"]
 
+# add render to allowed hosts
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 #ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]").split(",") # koyeb deployment
 
 # Application definition

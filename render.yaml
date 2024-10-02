@@ -7,5 +7,5 @@ services:
   plan: free
   region: frankfurt
   buildCommand: "./build.sh"
-  startCommand: gunicorn Bookstore.wsgi
+  startCommand: gunicorn Bookstore.wsgi:app
 version: "1"
