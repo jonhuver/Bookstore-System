@@ -1,7 +1,10 @@
-
+##render deployment file
 ##koyeb configuration
 
 echo "BUILD START"
+
+# Exit on error
+set -o errexit
 
 # create a virtual environment named 'venv' if it doesn't already exist
 #python3.12 -m venv venv
@@ -11,10 +14,13 @@ echo "BUILD START"
 echo "python version"
 echo python --version
 # install all deps in the venv
-pip install pipenv
-pipenv shell
-pipenv install
+#pip install pipenv
+#pipenv shell
+pip install -r requirements.txt
+
 python manage.py makemigrations --noinput
+
+python manage.py collectstatic --noinput
 
 python manage.py migrate --noinput
 # collect static files using the Python interpreter from venv

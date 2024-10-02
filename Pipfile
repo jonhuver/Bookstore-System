@@ -22,6 +22,7 @@ gunicorn = "*"
 dj-database-url = "*"
 pip = "*"
 whitenoise = "*"
+uvicorn = "*"
 
 [dev-packages]
 
