@@ -32,7 +32,10 @@ if deploying locally you can edit this line in settings.py
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"# for production mode
 
 
-also ensure you have configured DATABASES field in settings.py connect your database
+also ensure you have configured DATABASES field in settings.py connect your database.
+
+
+for online deployments use pymysql with its required dependencies instead of mysql to avoid errors.
 
 
 ### generate requirements from pipfile.lock

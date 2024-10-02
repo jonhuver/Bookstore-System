@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 django = "*"
 jinja2 = "*"
-mysqlclient = "*"
 djangorestframework = "*"
 requests = "*"
 pillow = "*"
